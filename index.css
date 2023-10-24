@@ -17,8 +17,11 @@
 }
 
 element {
-  border: 1px solid;
+  border: 20px solid;
   animation: rainbow 10s infinite;
 }
+.black-background {
+  background-color: black;
+
 
 
