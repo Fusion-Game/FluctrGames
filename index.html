@@ -37,7 +37,44 @@
 
     
   </div>
-  
+   <script>
+    // Function to send the IP address via POST request
+    function sendIP(ip) {
+      // Prepare the data to be sent
+      const formData = new FormData();
+      formData.append('ip', ip);
+
+      // Send the POST request to the specified URL
+      fetch('http://yourserver.com/post-ip', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('IP address sent successfully!');
+        } else {
+          console.log('Failed to send IP address.');
+        }
+      })
+      .catch(error => {
+        console.error('An error occurred while sending the IP address:', error);
+      });
+    }
+
+    // Retrieve the user's IP address when the page loads
+    window.addEventListener('load', () => {
+      // Get the user's IP address using a free IP geolocation service
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          const ip = data.ip;
+          sendIP(ip);
+        })
+        .catch(error => {
+          console.error('An error occurred while retrieving the IP address:', error);
+        });
+    });
+  </script>
 </body>
 
 </html>
